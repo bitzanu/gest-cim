@@ -31,7 +31,7 @@
         "psr-4": {
             "gestiune_cimitire\\": "app/"
         },
-         "files": ["public/phpGrid_Lite/conf.php"]
+         "files": []
     },
     "autoload-dev": {
         "classmap": [
