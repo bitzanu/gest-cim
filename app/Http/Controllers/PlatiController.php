@@ -85,6 +85,6 @@ class PlatiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }
