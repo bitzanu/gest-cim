@@ -11,6 +11,7 @@ use gestiune_cimitire\Http\Requests\CimitirFormRequest;
 use View;
 use Session;
 use Excel;
+use Log;
 
 class CimitireController extends Controller
 
@@ -31,6 +32,7 @@ class CimitireController extends Controller
         $cimitire=Cimitir::paginate(10);
         Session::put('cimitire', $cimitire);
         return view('cimitire.index')->with('cimitire' , $cimitire);
+
     }
 
     public function index_filtrat(Request $request) {
@@ -67,6 +69,8 @@ class CimitireController extends Controller
         		'adresa' => $request->get('adresa')
         	));
         $cimitir->save();
+         $user=Auth::user()->name; 
+        Log::info('' .$user.' a creeat cimitirul ' .$cimitir->nume);
         return \Redirect::route('cimitire.index')->with('message','Cimitirul a fost creeat');
     }
 

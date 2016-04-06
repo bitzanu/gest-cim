@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
             \gestiune_cimitire\Http\Middleware\VerifyCsrfToken::class,
         ],
 
+
         'api' => [
             'throttle:60,1',
         ],
@@ -48,5 +49,6 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \gestiune_cimitire\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'adminRole'  => \gestiune_cimitire\Http\Middleware\Admin::class,
     ];
 }
