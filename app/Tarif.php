@@ -9,14 +9,13 @@ class Tarif extends Model
 {
     //
      use SoftDeletes;
-    protected $touches = ['concesiune'];
     protected $table= 'tarife';
     protected $dates= ['deleted_at'];
     protected $fillable = array('an', 'redeventa','intretinere');
 
      public static function boot(){
         parent::boot();
-        self::deleting(function($loc) {
+        self::deleting(function($tarif) {
             foreach ($tarif->rate()->get() as $rata) {
                 $rata->delete();
             }
@@ -38,5 +37,11 @@ class Tarif extends Model
    	public function concesiuni(){
    		return $this->hasMany('gestiune_cimitire\Concesiune');
    	}
+     public function scopeFiltreaza($query , $params){
+        if ( isset($params['an']) && trim($params['an']) !=='' ) {
+            $query->where('an', 'LIKE', trim($params['an'] . '%'));
+        }
+        return $query;
+    }
 
 }

@@ -3,7 +3,6 @@
 namespace gestiune_cimitire\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
 use gestiune_cimitire\Http\Requests;
 use gestiune_cimitire\Http\Controllers\Controller;
 use gestiune_cimitire\Cimitir;
@@ -12,6 +11,7 @@ use View;
 use Session;
 use Excel;
 use Log;
+use Auth;
 
 class CimitireController extends Controller
 

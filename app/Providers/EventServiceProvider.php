@@ -4,6 +4,9 @@ namespace gestiune_cimitire\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use gestiune_cimitire\Concesiune;
+use gestiune_cimitire\Tarif;
+use gestiune_cimitire\Rata;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,5 +32,15 @@ class EventServiceProvider extends ServiceProvider
         parent::boot($events);
 
         //
+        Concesiune::saved(function ($concesiune){
+            //
+            $tarife=Tarif::where('an','>=',$concesiune->tarif->an)->get();
+            foreach ($tarife as $tarif) {
+                $rata=new Rata();
+                $tarif->rate()->save($rata);
+                $concesiune->rate()->save($rata);
+            }
+
+        });
     }
 }

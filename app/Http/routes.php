@@ -71,6 +71,33 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('locuri', 'LocuriController');
 
    
+    //persoane
+    Route::post('persoane/index_filtrat' , ['as'=>'persoane_index_filtrat' , 'uses'=>'PersoaneController@index_filtrat']);
+    Route::post('persoane/show_filtrat' , ['as'=>'persoane_show_filtrat' , 'uses'=>'PersoaneController@show_filtrat']);
+    Route::get('persoane/print',[ 'as'=>'print_persoane', 'uses'=>'PersoaneController@print_persoane']);
+    Route::get('persoane/{id?}/concesiuni' , ['as'=>'getPersoanaConcesiuni', 'uses'=>'AppController@getConcesiuni']);
+    Route::get('persoane/export' , ['as'=>'export_persoane' , 'uses'=>'PersoaneController@export_persoane']);
+    Route::resource('persoane' , 'PersoaneController' );
+
+    //concesiuni 
+     Route::get('concesiuniprint',[ 'as'=>'print_concesiuni', 'uses'=>'ConcesiuniController@print_concesiuni']);
+    Route::get('concesiuni/export' , ['as'=>'export_concesiuni' , 'uses'=>'ConcesiuniController@export_concesiuni']);
+    Route::resource('concesiuni' , 'ConcesiuniController' );
+
+
+    //tipuri concesiuni
+    Route::get('tipuri/print',[ 'as'=>'print_tipuri', 'uses'=>'TipuriController@print_tipuri']);
+    Route::get('tipuri/export' , ['as'=>'export_tipuri' , 'uses'=>'TipuriController@export_tipuri']);
+    Route::resource('tipuri' , 'TipuriController' );
+
+    //tarife
+      Route::post('tarife/index_filtrat' , ['as'=>'tarife_index_filtrat' , 'uses'=>'TarifeController@index_filtrat']);
+    Route::get('tarife/print',[ 'as'=>'print_tarife', 'uses'=>'TarifeController@print_tarife']);
+    Route::get('tarife/export' , ['as'=>'export_tarife' , 'uses'=>'TarifeController@export_tarife']);
+    Route::resource('tarife' , 'TarifeController' );
+
+
+
     //
     Route::get('dashboard', 'DashboardController@index');
 

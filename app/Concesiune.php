@@ -29,7 +29,7 @@ class Concesiune extends Model
 
 
   public function persoane(){
-    	return $this->belongsToMany('gestiune_cimitire\Persoana')->withTimestamps();
+    	return $this->belongsToMany('gestiune_cimitire\Persoana','concesiune_persoana')->withTimestamps();
    }
 
    public function loc(){
@@ -46,7 +46,7 @@ class Concesiune extends Model
     return $this->hasManyThrough('gestiune_cimitire\Rata','gestiune_cimitire\Plata');
    }
 
-   public function an(){
+   public function tarif(){
     return $this->belongsTo('gestiune_cimitire\Tarif');
    }
    

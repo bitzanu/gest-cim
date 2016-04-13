@@ -11,7 +11,7 @@ class Tip extends Model
 {
     //
      use SoftDeletes;
-    protected $touches = ['concesiune'];
+    //protected $touches = ['concesiune'];
     protected $table= 'tipuri';
     protected $dates= ['deleted_at'];
     protected $fillable = array('nume', 'reducere');
