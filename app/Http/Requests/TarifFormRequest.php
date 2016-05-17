@@ -25,7 +25,7 @@ class TarifFormRequest extends Request
     {
         return [
             //
-        'an'=>'required|integer|min:1900|max:2100|unique:tarife,an,' . $this->id . ',id',
+        'an'=>'required|integer|min:1900|max:2100|unique:tarife,an,' . $this->id . ',id,deleted_at,NULL',
         'redeventa'=>'required|numeric|min:0' ,
         'intretinere'=>'required|numeric|min:0' 
         ];

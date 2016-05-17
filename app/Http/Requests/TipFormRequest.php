@@ -25,7 +25,7 @@ class TipFormRequest extends Request
     {
         return [
             //
-        'nume'=>'required|unique:tipuri,nume,' .$this->id. '.id',
+        'nume'=>'required|unique:tipuri,nume,' .$this->id. ',id,deleted_at,NULL',
         'reducere'=>'required|numeric|min:0|max:100'
         ];
     }

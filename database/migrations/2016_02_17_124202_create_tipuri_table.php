@@ -16,7 +16,7 @@ class CreateTipuriTable extends Migration
         Schema::create('tipuri' , function(Blueprint $table) {
         $table->engine = 'InnoDB';
         $table->increments('id');
-        $table->string('nume')->unique();
+        $table->string('nume');
         $table->double('reducere');       
         $table->timestamps();
         $table->softDeletes();

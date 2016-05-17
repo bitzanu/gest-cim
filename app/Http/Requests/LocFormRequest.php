@@ -25,12 +25,12 @@ class LocFormRequest extends Request
     {
         return [
             //
-            'numar'=> 'required | unique:locuri,numar,' . $this->loc . ',id,parcela_id,' . $this->parcela,
+            'numar'=> 'required | unique:locuri,numar,' . $this->loc . ',id,parcela_id,' . $this->parcela . ',deleted_at,NULL',
             'lungime'=>'numeric|required',
             'latime'=>'numeric|required',
             'numar_locuri'=>'numeric|required',
-            'cimitir'=>'exists:cimitire,id,deleted_at,NULL',
-            'parcela'=>'exists:parcele,id,deleted_at,NULL'
+            'cimitir'=>'required|exists:cimitire,id,deleted_at,NULL',
+            'parcela'=>'required|exists:parcele,id,deleted_at,NULL'
         ];
     }
 }

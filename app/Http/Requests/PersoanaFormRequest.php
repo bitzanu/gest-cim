@@ -27,7 +27,7 @@ class PersoanaFormRequest extends Request
             //
         'nume'=> 'required' ,
         'prenume' => 'required' ,
-        'CNP' => 'digits:13|unique:persoane,CNP,' . $this->id . ',id',
+        'CNP' => 'digits:13|unique:persoane,CNP,' . $this->id . ',id,deleted_at,NULL',
         'adresa'=>'required'
         ];
     }

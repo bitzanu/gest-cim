@@ -21,7 +21,7 @@ class CreatePersoaneTable extends Migration
             $table->string('nume');
             $table->string('prenume');
             $table->string('adresa');
-            $table->string('CNP')->unique();
+            $table->string('CNP');
             $table->timestamps();
             $table->softDeletes();
         });

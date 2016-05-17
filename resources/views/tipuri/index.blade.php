@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
  
- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main panel panel-default">
+    <div class="panel-heading">
     @include('layouts.partials.alerts')
-    <h1 class="page-header">Tipuri concesiuni</h1>
-    <div >
-
+    <h2 class="page-header">Tipuri concesiuni</h2>
+    </div>
         @if( $tipuri )
         <table class="table table-condensed">
               	@foreach($tipuri as $tip) 
@@ -17,13 +17,11 @@
         	  </tr>
    			@endforeach      	
         </table>
- 			
         @endif
  
         @if( $tipuri->isEmpty() )
            <h3>Nu exista niciun tip concesiune</h3>
         @endif
-    </div>
     {!! $tipuri->render() !!}
     <div>
     <a class="btn btn-info" href="{{ route('tipuri.create') }}">Tip nou</a>

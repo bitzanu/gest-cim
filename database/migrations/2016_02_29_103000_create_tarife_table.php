@@ -16,7 +16,7 @@ class CreateTarifeTable extends Migration
          Schema::create('tarife' , function(Blueprint $table) {
         $table->engine = 'InnoDB';
         $table->increments('id');
-        $table->integer('an')->unique();
+        $table->integer('an');
         $table->double('redeventa');
         $table->double('intretinere');       
         $table->timestamps();
@@ -32,6 +32,6 @@ class CreateTarifeTable extends Migration
     public function down()
     {
         //
-        Schema::drop('tipuri');
+        Schema::drop('tarife');
     }
 }

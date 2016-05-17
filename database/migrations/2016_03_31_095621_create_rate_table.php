@@ -20,8 +20,7 @@ class CreateRateTable extends Migration
             $table->integer('concesiune_id')->unsigned()->nullable;
             $table->foreign('concesiune_id')->references('id')->on('concesiuni');
             $table->integer('tarif_id')->unsigned()->nullable;
-            $table->foreign('tarif_id')->references('id')->on('tarife');
-             $table->unique(array('concesiune_id', 'tarif_id'));     
+            $table->foreign('tarif_id')->references('id')->on('tarife');     
             $table->timestamps();
             $table->softDeletes();
         });
@@ -37,7 +36,7 @@ class CreateRateTable extends Migration
         //public function down()
     {
         //
-          Schema::drop('concesiuni_tarife');
+          Schema::drop('rate');
     }
     }
 }

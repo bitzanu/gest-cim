@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace gestiune_cimitire;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,20 +14,6 @@ class Parcela extends Model
     protected $dates= ['deleted_at'];
     protected $fillable = array('numar' , 'cimitir_id');
     
-    public static function boot(){
-        parent::boot();
-        self::deleting(function($parcela) {
-            foreach ($parcela->locuri()->get() as $loc) {
-                $loc->delete();
-            }
-        });
-        self::restoring(function($parcela) {
-            foreach ($parcela->locuri()->get() as $loc) {
-                $loc->restore();
-            }
-        });
-
-    }
     public function cimitir(){
     	return $this->belongsTo('gestiune_cimitire\Cimitir');
     }

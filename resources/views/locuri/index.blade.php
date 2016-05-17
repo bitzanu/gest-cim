@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
- 
- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main panel panel-default">
+    <div class="panel-heading">
     @include('layouts.partials.alerts')
-    <h1 class="page-header">Locuri</h1>
-    <div >
+    <h2 class="page-header">Locuri</h2>
     <table class="table table-condensed">
     {!! Form::open(array('route' => 'locuri_index_filtrat', 'class' => 'form' , 'method' => 'POST' )) !!}
         <tr>
@@ -24,6 +24,7 @@
         </tr>
     {!! Form::close() !!}
     </table>
+    </div>
     
 
         @if( $locuri )
@@ -33,6 +34,7 @@
         	  	<td>{{$loc->numar}}</td>
         	  	<td>{{$loc->parcela->numar}}</td>
                 <td>{{$loc->parcela->cimitir->nume}}</td>
+                <td>{{$loc->concesiuni->count()}}</td>
         	  	<td> <a class="btn btn-small btn-success" href="{{ route ('locuri.edit' , $loc->id) }}">Edit</a></td>
         	  	<td><a class="btn btn-small btn-success" href="{{ route ('locuri.show' , $loc->id) }}">Detalii</a></td>
         	  </tr>
@@ -44,7 +46,6 @@
         @if( $locuri->isEmpty() )
            <h3>Nu exista nici un loc</h3>
         @endif
-    </div>
     {!! $locuri->render() !!} 
     <div>
     <a class="btn btn-info" href="{{ route('locuri.create') }}">Loc nou</a>
@@ -56,5 +57,4 @@
 @endsection
 @section('scripts')
 {{-- you can add a source here again or directly write the script in script tags--}}
-<script type="text/javascript" src="{{ URL::asset('assets/js/script.js') }}"></script>
 @stop

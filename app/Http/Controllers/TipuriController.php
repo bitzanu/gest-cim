@@ -114,10 +114,14 @@ class TipuriController extends Controller
     {
         //
         $tip=Tip::findOrFail($id);
-         $user=Auth::user()->name; 
-        Log::info('' .$user.' a sters tipul ' .$tip->nume);
-        Tip::destroy($id);
-        return \Redirect::route('tipuri.index')->with('message' , 'tipul a fost sters');
+        $user=Auth::user()->name; 
+        if ( $tip->concesiuni->count()==0){
+            Log::info('' .$user.' a sters tipul ' .$tip->nume);
+            Tip::destroy($id);
+            return \Redirect::route('tipuri.index')->with('message' , 'tipul a fost sters');
+        } else {
+             return \Redirect::route('tipuri.index')->with('message' , 'Exista concesiuni! Tipul nu a fost sters!');
+        }
     }
      public function print_tipuri (Request $request)
     {

@@ -69,5 +69,4 @@
  @stop
  @section('scripts')
 {{-- you can add a source here again or directly write the script in script tags--}}
-<script type="text/javascript" src="{{ URL::asset('assets/js/script.js') }}"></script>
 @stop

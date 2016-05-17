@@ -17,7 +17,7 @@ class CreateCimitireTable extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('nume')->unique();
+            $table->string('nume');
             $table->string('adresa');
             $table->timestamps();
             $table->softDeletes();

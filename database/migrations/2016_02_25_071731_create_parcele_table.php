@@ -20,7 +20,6 @@ class CreateParceleTable extends Migration
         $table->integer('cimitir_id')->unsigned();
         $table->foreign('cimitir_id')
             ->references('id')->on('cimitire');
-        $table->unique(array('numar', 'cimitir_id'));
         $table->timestamps();
         $table->softDeletes();
     });

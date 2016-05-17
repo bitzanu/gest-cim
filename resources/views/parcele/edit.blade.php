@@ -14,7 +14,7 @@
  		'method'=>'put', 
  		'route' => ['parcele.update' , $parcela->id  ], 
  		'class' => 'form')) !!}
-{!! Form::hidden('parcela_id', $parcela->id) !!}
+{!! Form::hidden('id', $parcela->id) !!}
 {!! Form::hidden('cimitir_id', $parcela->cimitir->id) !!}
  <div class="form-group">
  	{!! Form::label('Numar parcela') !!}

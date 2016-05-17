@@ -13,7 +13,7 @@ class ConcesiuneFormRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,11 @@ class ConcesiuneFormRequest extends Request
     {
         return [
             //
+        'numar'=>'required',
+        'tarif'=>'required',
+        'durata'=>'required|integer|min:7',
+        'loc'=>'required|unique:concesiuni,loc_id,' . $this->id . ',id,deleted_at,NULL,activa,1',
+        'persoane'=>'required'
         ];
     }
 }

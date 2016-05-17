@@ -24,7 +24,6 @@ class CreateLocuriTable extends Migration
         $table->integer('parcela_id')->unsigned();
         $table->foreign('parcela_id')
             ->references('id')->on('parcele');
-        $table->unique(['numar','parcela_id']);
         $table->timestamps();
         $table->softDeletes();
         });

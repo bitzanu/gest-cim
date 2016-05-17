@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('content')
+@section('content') 
  
- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main panel panel-default">
+    <div class="panel-heading">
     @include('layouts.partials.alerts')
     <h1 class="page-header">Parcele</h1>
-    <div >
     <table class="table table-condensed">
     {!! Form::open(array('route' => 'parcele_index_filtrat', 'class' => 'form' , 'method' => 'POST' )) !!}
         <tr>
@@ -14,7 +14,7 @@
         </tr>
     {!! Form::close() !!}
     </table>
-
+    </div>
         @if( $parcele )
         <table class="table table-condensed">
               	@foreach($parcele as $parcela) 
@@ -32,7 +32,6 @@
         @if( $parcele->isEmpty() )
            <h3>Nu exista nicio parcela</h3>
         @endif
-    </div>
     {!! $parcele->render() !!} 
     <div>
         <a class="btn btn-info" href="{{ route('parcele.create') }}">Parcela noua</a>

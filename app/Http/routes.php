@@ -79,7 +79,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('persoane/export' , ['as'=>'export_persoane' , 'uses'=>'PersoaneController@export_persoane']);
     Route::resource('persoane' , 'PersoaneController' );
 
-    //concesiuni 
+    //concesiuni
+    Route::get('concesiuni/dezactivare/{id}' , ['as'=>'concesiuni_dezactivare' , 'uses'=>'ConcesiuniController@dezactivare']);
+    Route::put('concesiuni/update_dezactivare/{id}' , ['as'=>'concesiuni_update_dezactivare' , 'uses'=>'ConcesiuniController@update_dezactivare']);  
+    Route::post('concesiuni/index_filtrat' , ['as'=>'concesiuni_index_filtrat' , 'uses'=>'ConcesiuniController@index_filtrat']);
      Route::get('concesiuniprint',[ 'as'=>'print_concesiuni', 'uses'=>'ConcesiuniController@print_concesiuni']);
     Route::get('concesiuni/export' , ['as'=>'export_concesiuni' , 'uses'=>'ConcesiuniController@export_concesiuni']);
     Route::resource('concesiuni' , 'ConcesiuniController' );
@@ -96,6 +99,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('tarife/export' , ['as'=>'export_tarife' , 'uses'=>'TarifeController@export_tarife']);
     Route::resource('tarife' , 'TarifeController' );
 
+
+    //rate
+    Route::post('rate/index_filtrat' , ['as'=>'index_filtrat' , 'uses'=>'RateController@index_filtrat']);
+    Route::get('rate/print',[ 'as'=>'print_rate', 'uses'=>'RateController@print_rate']);
+    Route::get('rate/export' , ['as'=>'export_rate' , 'uses'=>'RateController@export_rate']);
+    Route::resource('rate' , 'RateController' );
+
+    //plati
+    Route::resource('plati' , 'PlatiController' );
 
 
     //

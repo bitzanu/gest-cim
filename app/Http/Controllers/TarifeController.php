@@ -131,7 +131,7 @@ class TarifeController extends Controller
     Tarif::destroy($id);
     $user=Auth::user()->name; 
     Log::info('' .$user.' a sters tariful ' .$tarif->an.' '.$tarif->redeventa);
-    return \Redirect::route('tarife.index')->with('message' , 'Tariful a fost stearsa');
+    return \Redirect::route('tarife.index')->with('message' , 'Tariful a fost sters');
     } else  {
         return \Redirect::route('tarife.index')->with('message' , 'Exista concesiuni! Tariful nu a fost sters!');
     }

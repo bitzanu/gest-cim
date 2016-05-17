@@ -8,13 +8,11 @@
     <title>URBIS-SERV</title>
 
     <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    {!! HTML::style('css/app.css')!!}
+    {!! HTML::style('css/vendor/bootstrap-datetimepicker.min.css')!!}
+    {!! HTML::style('bootstrap/css/bootstrap.min.css')!!}
 
-    <!-- Styles -->
-    <!--  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}} -->
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+     <!-- ... -->
     <style>
         body {
             font-family: 'Lato';
@@ -49,12 +47,13 @@
                 <ul class="nav navbar-nav">
                  @if (Auth::guest())
                  @else
-                    <li><a class="btn btn-info" href="{{ url('/home') }}">Home</a></li>
+                    <li><a class="btn btn-info" href="{{ url('/home') }} " >Home</a></li>
                     <li><a  class="btn btn-info" href="{{ url('cimitire') }}">Cimitire</a></li>
                     <li><a class="btn btn-info" href="{{ url('parcele') }}">Parcele</a></li>
                      <li><a class="btn btn-info" href="{{ url('locuri') }}">Locuri</a></li>
                      <li><a  class="btn btn-info" href="{{ url('persoane') }}">Persoane</a></li>
                      <li><a  class="btn btn-info" href="{{ url('concesiuni') }}">Concesiuni</a></li>
+                     <li><a  class="btn btn-info" href="{{ url('rate') }}">Rate</a></li>
                      <li><a  class="btn btn-info" href="{{ url('plati') }}">Plati</a></li>
 
                      @if (Auth::user()->admin)
@@ -87,11 +86,14 @@
     </nav>
 
     @yield('content')
-
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    {!! HTML::script('js/vendor/jquery.min.js')!!}
+    {!! HTML::script('js/vendor/bootstrap.min.js')!!}
+    {!! HTML::script('js/vendor/moment.min.js')!!}
+    {!! HTML::script('js/vendor/bootstrap-datetimepicker.min.js')!!}
+    {!! HTML::script('js/script.js')!!}
+
      @yield('scripts')
 </body>
 

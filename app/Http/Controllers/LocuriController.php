@@ -102,6 +102,9 @@ class LocuriController extends Controller
     public function show($id)
     {
         //
+        $loc=Loc::findOrFail($id);
+        $concesiuni=$loc->concesiuni()->paginate(10);
+        return view('locuri.show')->with(array('loc'=>$loc,'concesiuni'=>$concesiuni));
 
     }
 

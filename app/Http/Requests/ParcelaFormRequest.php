@@ -23,10 +23,10 @@ class ParcelaFormRequest extends Request
      */
     public function rules()
     {
-      $parcelaId=$this->parcela_id;
+ 
 
        return [
-       'numar'=> 'required | unique:parcele,numar,' . $parcelaId . ',id,cimitir_id,' . $this->cimitir
+       'numar'=> 'required | unique:parcele,numar,' . $this->id . ',id,cimitir_id,' . $this->cimitir . ',deleted_at,NULL'
        ];
     }
 }

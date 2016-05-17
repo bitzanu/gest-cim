@@ -26,6 +26,7 @@ class CreateConcesiuniTable extends Migration
             $table->foreign('tip_id')->references('id')->on('tipuri');
             $table->integer('loc_id')->unsigned();
             $table->foreign('loc_id')->references('id')->on('locuri');
+            $table->string('motiv_sfarsit');
             $table->timestamps();
             $table->softDeletes();
         });

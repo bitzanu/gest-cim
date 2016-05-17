@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
  
- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main panel panel-default">
+    <div class="panel-heading">
     @include('layouts.partials.alerts')
-    <h1 class="page-header">Persoane</h1>
-    <div >
+    <h2 class="page-header">Persoane</h2>
     <table class="table table-condensed">
     {!! Form::open(array('route' => 'persoane_index_filtrat', 'class' => 'form' , 'method' => 'POST' )) !!}
         <tr>
@@ -15,6 +15,7 @@
         </tr>
     {!! Form::close() !!}
     </table>
+    </div>
 
         @if( $persoane )
         <table class="table table-condensed">
@@ -35,7 +36,6 @@
         @if( $persoane->isEmpty() )
            <h3>Nu exista nicio persoana</h3>
         @endif
-    </div>
     {!! $persoane->render() !!}
     <div>
     <a class="btn btn-info" href="{{ route('persoane.create') }}">Persoana noua</a>

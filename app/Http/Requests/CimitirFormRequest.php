@@ -23,10 +23,9 @@ class CimitirFormRequest extends Request
      */
     public function rules()
     {
-        $cimitirId=$this->input('id');
         return [
             //
-        'nume'=> 'required|unique:cimitire,nume,' .$cimitirId ,
+        'nume'=> 'required|unique:cimitire,nume,' .$this->id. ',id,deleted_at,NULL' ,
         'adresa'=>'required'
         ];
     }
