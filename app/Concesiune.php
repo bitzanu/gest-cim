@@ -41,7 +41,7 @@ class Concesiune extends Model
       foreach ($rate as $rata){
         $restDePlata+=$rata->tarif->intretinere + $rata->tarif->redeventa - $rata->platit;
       }
-      return $restDePlata;
+      return $restDePlata-$restDePlata*$this->tip->reducere/100;
 
    }
     public function scopeFiltreaza($query , $params){

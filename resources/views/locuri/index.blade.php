@@ -28,17 +28,48 @@
     
 
         @if( $locuri )
-        <table class="table table-condensed">
+        <table class="table table-condensed table-responsive table-hover">
+            <thead>
+                <tr><th>Concesiuni</th><th>NUMAR</th><th>PARCELA</th><th>CIMITIR</th><th>Detalii</th></tr>
+            </thead>
+            <tbody>
+                <?php $i=1; ?> 
               	@foreach($locuri as $loc) 
-        	  <tr>
-        	  	<td>{{$loc->numar}}</td>
-        	  	<td>{{$loc->parcela->numar}}</td>
-                <td>{{$loc->parcela->cimitir->nume}}</td>
-                <td>{{$loc->concesiuni->count()}}</td>
-        	  	<td> <a class="btn btn-small btn-success" href="{{ route ('locuri.edit' , $loc->id) }}">Edit</a></td>
-        	  	<td><a class="btn btn-small btn-success" href="{{ route ('locuri.show' , $loc->id) }}">Detalii</a></td>
-        	  </tr>
-   			@endforeach      	
+                	  <tr class="clickable" data-toggle="collapse" id="row{{$i}}" data-target=".row{{$i}}">
+                          @if($loc->concesiuni->count()>0)
+                          <td><i class="glyphicon glyphicon-plus"></i></td>
+                          @else <td></td>
+                          @endif
+                    	   	<td>{{$loc->numar}}</td>
+                    	  	<td>{{$loc->parcela->numar}}</td>
+                          <td>{{$loc->parcela->cimitir->nume}}</td>
+                          <td>l:{{$loc->lungime}},L:{{$loc->latime}},locuri:{{$loc->numar_locuri}},constr:{{$loc->constructie}},nr conc:{{$loc->concesiuni->count()}}</td>
+                    	  	<td> <a class="btn btn-small btn-success" href="{{ route ('locuri.edit' , $loc->id) }}">Edit</a></td>
+                    	  	<td><a class="btn btn-small btn-success" href="{{ route ('locuri.show' , $loc->id) }}">Detalii</a></td>
+                	  </tr>
+                     @foreach($loc->concesiuni as $concesiune)
+
+                        <tr class="collapse row{{$i}}">
+                            <td></td>
+                            <td>conc: {{$concesiune->numar}}</td>
+                            <td>an:{{$concesiune->tarif->an}}</td>
+                            <td>tip:{{$concesiune->tip->nume}},durata:{{$concesiune->durata}} ani</td>
+                            <td>
+                              @foreach($concesiune->persoane as $persoana)
+                                {{$persoana->nume}},{{$persoana->prenume}}-{{$persoana->CNP}};
+                                <br>
+                              @endforeach()
+                            </td>
+                            <td> <a class="btn btn-small btn-info" href="{{ route ('concesiuni.edit' , $concesiune->id) }}">Edit</a></td>
+                            <td><a class="btn btn-small btn-info" href="{{ route ('concesiuni.show' , $concesiune->id) }}">Rate</a></td>
+                        </tr>
+
+
+                    @endforeach()
+
+                    <?php $i++ ?>
+   			        @endforeach()
+            </tbody>
         </table>
  			
         @endif

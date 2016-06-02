@@ -18,17 +18,55 @@
     </div>
 
         @if( $persoane )
-        <table class="table table-condensed">
+        <table class="table table-condensed table-responsive table-hover">
+        <thead>
+                <tr><th>Concesiuni</th><th>NUME</th><th>PRENUME</th><th>ADRESA</th><th>CNP</th></tr>
+        </thead>
+        <tbody>
+                <?php $i=1; ?> 
               	@foreach($persoane as $persoana) 
-        	  <tr>
-        	  	<td>{{$persoana->nume}}</td>
-                <td>{{$persoana->prenume}}</td>
-        	  	<td>{{$persoana->adresa}}</td>
-                <td>{{$persoana->CNP}}</td>
-        	  	<td> <a class="btn btn-small btn-success" href="{{ route ('persoane.edit' , $persoana->id) }}">Edit</a></td>
-        	  	<td><a class="btn btn-small btn-success" href="{{ route ('persoane.show' , $persoana->id) }}">Concesiuni</a></td>
-        	  </tr>
-   			@endforeach      	
+                	  <tr class="clickable" data-toggle="collapse" id="row{{$i}}" data-target=".row{{$i}}">
+                         @if($persoana->concesiuni->count()>0)
+                          <td><i class="glyphicon glyphicon-plus"></i></td>
+                          @else <td></td>
+                          @endif
+                	  	<td>{{$persoana->nume}}</td>
+                        <td>{{$persoana->prenume}}</td>
+                	  	<td>{{$persoana->adresa}}</td>
+                        <td>{{$persoana->CNP}}</td>
+                	  	<td> <a class="btn btn-small btn-success" href="{{ route ('persoane.edit' , $persoana->id) }}">Edit</a></td>
+                	  	<td><a class="btn btn-small btn-success" href="{{ route ('persoane.show' , $persoana->id) }}">Concesiuni</a></td>
+                	  </tr>
+                      @foreach($persoana->concesiuni as $concesiune)
+
+                        <tr class="collapse row{{$i}}">
+                            <td></td>
+                            <td>conc: {{$concesiune->numar}},activa:<?php echo $concesiune->activa ? "DA" :  "NU"  ?>
+                            </td>
+                            <td>an:{{$concesiune->tarif->an}}</td>
+                            <td>
+                                tip:{{$concesiune->tip->nume}},durata:{{$concesiune->durata}} ani<br>
+                                loc:{{$concesiune->loc->numar}},
+                                parcela:{{$concesiune->loc->parcela->numar}},
+                                cimitir:{{$concesiune->loc->parcela->cimitir->nume}} 
+
+                            </td>
+                            <td>
+                              @foreach($concesiune->persoane as $persoana)
+                                {{$persoana->nume}},{{$persoana->prenume}}-{{$persoana->CNP}};
+                                <br>
+                              @endforeach()
+                            </td>
+                            <td> <a class="btn btn-small btn-info" href="{{ route ('concesiuni.edit' , $concesiune->id) }}">Edit</a></td>
+                            <td><a class="btn btn-small btn-info" href="{{ route ('concesiuni.show' , $concesiune->id) }}">Rate</a></td>
+                        </tr>
+
+
+                    @endforeach()
+
+                    <?php $i++ ?>
+   			    @endforeach()
+            </tbody>      	
         </table>
  			
         @endif
@@ -38,9 +76,9 @@
         @endif
     {!! $persoane->render() !!}
     <div>
-    <a class="btn btn-info" href="{{ route('persoane.create') }}">Persoana noua</a>
-    <a class="btn btn-info" href="{{ route('print_persoane') }}">Listare</a>
-    <a class="btn btn-info" href="{{ route('export_persoane') }}">Export</a>
+        <a class="btn btn-info" href="{{ route('persoane.create') }}">Persoana noua</a>
+        <a class="btn btn-info" href="{{ route('print_persoane') }}">Listare</a>
+        <a class="btn btn-info" href="{{ route('export_persoane') }}">Export</a>
     </div>
  	
 </div>

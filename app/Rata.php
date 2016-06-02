@@ -31,4 +31,9 @@ class Rata extends Model
         }
         return $totalPlatit;
     }
+    public function getDePlataAttribute(){
+        $dePlata=($this->tarif->intretinere+$this->tarif->redeventa)-($this->tarif->intretinere+$this->tarif->redeventa)*$this->concesiune->tip->reducere/100;
+        return $dePlata;
+
+    }
 }

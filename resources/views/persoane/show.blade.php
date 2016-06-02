@@ -16,6 +16,8 @@
 				<tr>
 				<td> {{$concesiune->numar}} </td>
 				<td> <a class="btn btn-small btn-success" href="{{ route ('concesiuni.edit' , $concesiune->id) }}">Edit</a></td>
+				<td> <a class="btn btn-small btn-success" 
+				href="{{ route ('dezasociaza_concesiunea',['persoana'=>$persoana->id,'concesiune'=>$concesiune->id]) }}">Dezasociaza concesiunea</a></td>
         	  	<td><a class="btn btn-small btn-success" href="{{ route ('concesiuni.show' , $concesiune->id) }}">Rate</a></td>
 				</tr>
 			@endforeach
@@ -28,7 +30,8 @@
 		</p>
 	@endif
 <div>
-    <a class="btn btn-info" href="{{ route('concesiuni.create') }}">Concesiune noua</a>
+    <a class="btn btn-info" href="{{ route('concesiune_noua_persoana',$persoana->id) }}">Concesiune noua</a>
+    <a class="btn btn-info" href="#">Asociaza o concesiune</a>
  </div>
 </div>
 {!! $concesiuni->render() !!}

@@ -48,6 +48,14 @@ class PersoaneController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function dezasociaza_concesiunea($persoanaid,$concesiuneid){
+        $persoana=Persoana::findOrFail($persoanaid);
+        $persoana->concesiuni()->detach($concesiuneid);
+        $concesiuni=$persoana->concesiuni()->paginate(10);
+        return view ('persoane.show')->with('persoana',$persoana)
+        ->with('concesiuni',$concesiuni)
+        ->with('message','concesiune dezactivata');
+    }
 
     public function create()
     {

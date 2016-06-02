@@ -114,7 +114,7 @@ class ConcesiuniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($persoanaid)
     {
         //
         $tarife=Tarif::lists('an','id');

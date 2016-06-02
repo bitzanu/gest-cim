@@ -77,6 +77,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('persoane/print',[ 'as'=>'print_persoane', 'uses'=>'PersoaneController@print_persoane']);
     Route::get('persoane/{id?}/concesiuni' , ['as'=>'getPersoanaConcesiuni', 'uses'=>'AppController@getConcesiuni']);
     Route::get('persoane/export' , ['as'=>'export_persoane' , 'uses'=>'PersoaneController@export_persoane']);
+    Route::get('persoane/{persoana}/concesiuni/{concesiune}', ['as'=>'dezasociaza_concesiunea','uses'=>'PersoaneController@dezasociaza_concesiunea']);
     Route::resource('persoane' , 'PersoaneController' );
 
     //concesiuni

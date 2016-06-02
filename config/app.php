@@ -163,6 +163,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         gestiune_cimitire\Providers\FormMacroServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
 
 
     ],

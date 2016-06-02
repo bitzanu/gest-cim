@@ -16,15 +16,36 @@
     </table>
     </div>
         @if( $parcele )
-        <table class="table table-condensed">
-              	@foreach($parcele as $parcela) 
-        	  <tr>
-        	  	<td>{{$parcela->numar}}</td>
-        	  	<td>{{$parcela->cimitir->nume}}</td>
-        	  	<td> <a class="btn btn-small btn-success" href="{{ route ('parcele.edit' , $parcela->id) }}">Edit</a></td>
-        	  	<td><a class="btn btn-small btn-success" href="{{ route ('parcele.show' , $parcela->id) }}">Locuri</a></td>
-        	  </tr>
-   			@endforeach      	
+        <table class="table table-condensed table-responsive table-hover">
+            <thead>
+                <tr><th>Locuri</th><th>NUMAR</th><th>CIMITIR</th></tr>
+            </thead>
+            <tbody>
+                <?php $i=1; ?> 
+                  @foreach($parcele as $parcela) 
+                	  <tr class="clickable" data-toggle="collapse" id="row{{$i}}" data-target=".row{{$i}}">
+                	  	<td><i class="glyphicon glyphicon-plus"></i></td>
+                        <td>{{$parcela->numar}}</td>
+                	  	<td>{{$parcela->cimitir->nume}}</td>
+                	  	<td> <a class="btn btn-small btn-success" href="{{ route ('parcele.edit' , $parcela->id) }}">Edit</a></td>
+                	  	<td><a class="btn btn-small btn-success" href="{{ route ('parcele.show' , $parcela->id) }}">Locuri</a></td>
+                	  </tr>
+                       @foreach($parcela->locuri as $loc)
+
+                        <tr class="collapse row{{$i}}">
+                            <td></td>
+                            <td>loc nr: {{$loc->numar}}</td>
+                            <td>l:{{$loc->lungime}},L:{{$loc->latime}},locuri:{{$loc->numar_locuri}},constr:{{$loc->constructie}}</td>
+                            <td> <a class="btn btn-small btn-info" href="{{ route ('locuri.edit' , $loc->id) }}">Edit</a></td>
+                            <td><a class="btn btn-small btn-info" href="{{ route ('locuri.show' , $loc->id) }}">Concesiuni</a></td>
+                        </tr>
+
+
+                    @endforeach()
+
+                    <?php $i++ ?>
+       			@endforeach
+            </tbody>      	
         </table>
  			
         @endif

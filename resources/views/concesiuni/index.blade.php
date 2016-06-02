@@ -30,9 +30,20 @@
     </table>
   </div>
         @if( $concesiuni )
-        <table class="table table-condensed">
+        <table class="table table-condensed  table-responsive table-hover">
+         <thead>
+                <tr><th>Rate</th><th>NR</th><th>AN</th><th>DURATA</th><th>ACTIVA</th><TH>TIP</TH>
+                <th>CIMITIR</th><th>PARCELA</th><th>LOC</th><th>DE PLATA</th><th>PERSOANE</th>
+                </tr>
+        </thead>
+        <tbody>
+                <?php $i=1; ?> 
               	@foreach($concesiuni as $concesiune) 
-        	  <tr>
+        	  <tr class="clickable" data-toggle="collapse" id="row{{$i}}" data-target=".row{{$i}}">
+              @if($concesiune->rate->count()>0)
+                          <td><i class="glyphicon glyphicon-plus"></i></td>
+                          @else <td></td>
+                          @endif
         	  	<td>{{$concesiune->numar}}</td>
         	  	<td>{{$concesiune->tarif->an}}</td>
                 <td>{{$concesiune->durata}}</td>
@@ -43,27 +54,48 @@
                 @endif
                 <td>{{$concesiune->tip->nume}}</td>
                 <td>{{$concesiune->loc->parcela->cimitir->nume}}</td>
-                 <td>{{$concesiune->loc->parcela->numar}}</td>
-                  <td>{{$concesiune->loc->numar}}</td>
-                  <td><table class="table table-condensed">
+                <td>{{$concesiune->loc->parcela->numar}}</td>
+                <td>{{$concesiune->loc->numar}}</td>
+                <td>{{$concesiune->rest_de_plata}}</td>
+                <td>
                       @foreach($concesiune->persoane as $persoana)
-                      <tr>
-                        <td>{{$persoana->nume}}</td>
-                        <td>{{$persoana->prenume}}</td>
-                         <td>{{$persoana->CNP}}</td>
-                      </tr>
+                        {{$persoana->nume}},{{$persoana->prenume}}:{{$persoana->CNP}};<br>
                       @endforeach      
-                  </table></td>
-        	  	<td> <a class="btn btn-small btn-success" href="{{ route ('concesiuni.edit' , $concesiune->id) }}">Edit</a></td>
+                </td>
+
+        	  	  <td> <a class="btn btn-small btn-success" href="{{ route ('concesiuni.edit' , $concesiune->id) }}">Edit</a></td>
         	  	<td><a class="btn btn-small btn-success" href="{{ route ('concesiuni.show' , $concesiune->id) }}">Rate</a></td>
               @if ($concesiune->activa)
               <td> <a class="btn btn-small btn-success" href="{{ route ('concesiuni_dezactivare' , $concesiune->id) }}">Dezactivare</a></td>
-              @endif
+              @endif()
         	  </tr>
-   			@endforeach      	
+              @foreach($concesiune->rate as $rata)
+
+                        <tr class="collapse row{{$i}}">
+                            <td></td>
+                            <td>an: {{$rata->tarif->an}}</td>
+                            <td>redev: {{$rata->tarif->redeventa}}</td>
+                            <td>intr: {{$rata->tarif->intretinere}}</td>
+                            <td>total: {{$rata->tarif->redeventa+$rata->tarif->intretinere}}</td>
+                            <td>platit: {{$rata->platit}}</td>
+                            <td>de plata: {{$rata->de_plata}}</td>
+                            <td>rest: {{$rata->de_plata-$rata->platit}}</td>
+                             <td></td>
+                              <td></td>
+                               <td></td>
+                            <td> <a class="btn btn-small btn-info" href="{{ route ('rate.edit' , $concesiune->id) }}">Edit</a></td>
+                            <td><a class="btn btn-small btn-info" href="{{ route ('rate.show' , $concesiune->id) }}">Plati</a></td>
+                        </tr>
+
+
+                    @endforeach()
+
+                    <?php $i++ ?>
+   			@endforeach()  
+        </tbody>
         </table>
  			
-        @endif
+        @endif()
  
         @if( $concesiuni->isEmpty() )
            <h3>Nu exista nicio concesiune</h3>
